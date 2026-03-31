@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="En hızlı Undertale indir sitesi. Reklamsız ve Premium hız.">
     <title>Oyun İndir Premium | Undertale</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -11,21 +10,12 @@
         body { background-color: var(--bg-dark); color: #fff; font-family: 'Poppins', sans-serif; margin: 0; text-align: center; }
         .navbar { background: #151515; padding: 20px; border-bottom: 2px solid var(--primary); font-family: 'Orbitron', sans-serif; color: var(--primary); font-size: 24px; }
         .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .game-card { background: var(--card-bg); border-radius: 20px; padding: 40px; border: 1px solid #222; margin-bottom: 30px; }
+        .download-btn { display: block; background: linear-gradient(45deg, #05c46b, #0be881); color: #fff; text-align: center; padding: 22px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 24px; margin-top: 25px; transition: 0.3s; }
+        .download-btn:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(5, 196, 107, 0.5); }
         
-        /* OYUN KARTI STİLİ */
-        .game-card { background: var(--card-bg); border-radius: 20px; padding: 40px; border: 1px solid #222; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
-        .game-card::before { content: ''; position: absolute; top: 0; left: 0; width: 5px; height: 100%; background: var(--primary); }
-        
-        .download-btn { display: block; background: linear-gradient(45deg, #05c46b, #0be881); color: #fff; text-align: center; padding: 22px; border-radius: 15px; text-decoration: none; font-weight: bold; font-size: 24px; margin-top: 25px; transition: 0.3s; box-shadow: 0 5px 20px rgba(5, 196, 107, 0.3); }
-        .download-btn:hover { transform: scale(1.02); filter: brightness(1.1); box-shadow: 0 0 30px rgba(5, 196, 107, 0.5); }
-
-        /* PLAY STORE TARZI YORUM PANELİ */
+        /* YORUM PANELİ */
         .comment-panel { background: #1a1a1a; border-radius: 20px; padding: 30px; text-align: left; border: 1px solid #333; margin-top: 20px; }
-        .comment-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; border-bottom: 1px solid #333; padding-bottom: 15px; }
-        .comment-title { font-family: 'Orbitron'; color: var(--primary); font-size: 18px; margin: 0; }
-        .rating-box { color: var(--primary); font-size: 14px; font-weight: bold; }
-        
-        footer { margin-top: 60px; padding: 40px; color: #444; font-size: 12px; border-top: 1px solid #222; }
     </style>
 </head>
 <body>
@@ -34,40 +24,29 @@
 
     <div class="container">
         <div class="game-card">
-            <h1 style="font-family: 'Orbitron'; margin: 0; color: #fff;">UNDERTALE v1.08</h1>
-            <p style="color: var(--text-gray); margin-top: 10px;">👑 Premium Sunucu | Reklamsız | %100 Güvenli</p>
+            <h1 style="font-family: 'Orbitron'; margin: 0;">UNDERTALE v1.08</h1>
+            <p style="color: var(--text-gray);">Premium Hız | Google Drive Sunucusu</p>
             
-            <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="download-btn">İNDİRMEK İÇİN TIKLA</a>
-            
-            <p style="font-size: 11px; color: #555; margin-top: 20px;">Dosya boyutu: 130 MB - Virüs taramasından geçmiştir.</p>
+            <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="download-btn">ŞİMDİ İNDİR</a>
         </div>
 
         <div class="comment-panel">
-            <div class="comment-header">
-                <h2 class="comment-title">Kullanıcı Yorumları ve Puanlar</h2>
-                <div class="rating-box">⭐ 4.9 / 5</div>
-            </div>
-
-            <div id="disqus_thread"></div>
-            <script>
-                var disqus_config = function () {
-                    this.page.url = window.location.href;  
-                    this.page.identifier = 'oyun-indir-premium-unique-1'; 
-                };
-                (function() { 
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://oyun-indir-premium.disqus.com/embed.js'; 
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Yorumları görmek için tarayıcınızın JavaScript özelliğini açın.</noscript>
+            <h2 style="font-family: 'Orbitron'; color: var(--primary); font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 10px;">⭐ Gerçek Kullanıcı Yorumları</h2>
+            
+            <div id="cusdis_thread"
+              data-host="https://cusdis.com"
+              data-app-id="68d90479-7a0e-445a-8b17-09d6f63456a2"
+              data-page-id="undertale-premium-1"
+              data-page-url="window.location.href"
+              data-page-title="Undertale Premium İndir"
+              data-theme="dark"
+            ></div>
+            <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 Oyun İndir Premium - Oyuncular Tarafından Oyuncular İçin Yapıldı.<br>
-        <span style="font-size: 10px;">Bu site hiçbir ticari amaç gütmemektedir.</span>
+    <footer style="margin-top: 50px; padding: 20px; color: #444; font-size: 11px;">
+        &copy; 2026 Oyun İndir Premium
     </footer>
 
 </body>
