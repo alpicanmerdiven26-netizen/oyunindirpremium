@@ -47,4 +47,226 @@
             text-shadow: 0 0 10px rgba(255, 211, 42, 0.3);
         }
 
-        .nav-
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--primary); }
+
+        /* HERO BÖLÜMÜ (Giriş) */
+        .hero {
+            padding: 80px 5%;
+            text-align: center;
+            background: radial-gradient(circle, #1e272e 0%, #0a0a0a 100%);
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 50px;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #ffd32a, #ff9f1a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p { color: var(--text-gray); font-size: 18px; max-width: 600px; margin: 0 auto; }
+
+        /* OYUN KARTLARI KONTEYNERI */
+        .container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* OYUN KARTLARI (GRID SİSTEMİ) */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #222;
+            transition: 0.4s all ease;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.5);
+        }
+
+        .card-content { padding: 25px; }
+
+        .badge {
+            background: var(--primary);
+            color: #000;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+        }
+
+        .game-title { font-size: 22px; margin: 0 0 10px 0; color: #fff; }
+        .game-desc { color: var(--text-gray); font-size: 14px; margin-bottom: 20px; }
+
+        /* PREMIUM İNDİRME BUTONU */
+        .download-btn {
+            display: block;
+            width: 100%;
+            background: linear-gradient(45deg, #05c46b, #0be881);
+            color: #fff;
+            text-align: center;
+            padding: 15px 0;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 0 20px rgba(5, 196, 107, 0.4);
+            filter: brightness(1.1);
+        }
+
+        /* VİDEO BÖLÜMÜ */
+        .video-wrapper {
+            background: #111;
+            padding: 40px;
+            border-radius: 30px;
+            margin-top: 80px;
+            border: 1px solid #222;
+            text-align: center;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 15px;
+            box-shadow: 0 0 50px rgba(0,0,0,1);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: none;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #050505;
+            padding: 50px 5%;
+            text-align: center;
+            margin-top: 100px;
+            border-top: 1px solid #222;
+        }
+
+        .social-icons a {
+            color: var(--text-gray);
+            font-size: 24px;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover { color: var(--primary); }
+
+        /* MOBİL UYUMLULUK */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 35px; }
+            .navbar { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Oyun İndir Premium</div>
+        <div class="nav-links">
+            <a href="#">Ana Sayfa</a>
+            <a href="#oyunlar">Oyunlar</a>
+            <a href="#egitim">Nasıl İndirilir?</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <h1>SINIRSIZ EĞLENCEYE KATIL</h1>
+        <p>En yeni oyunlar, tek tıkla ve tamamen ücretsiz. Reklamlara boğulmadan premium kalitede indir.</p>
+    </header>
+
+    <div class="container" id="oyunlar">
+        <h2 class="section-title">Popüler Oyunlar</h2>
+        
+        <div class="game-grid">
+            <div class="game-card">
+                <span class="badge">V1.20.1</span>
+                <div class="card-content">
+                    <h3 class="game-title">Minecraft Full</h3>
+                    <p class="game-desc">Sınırsız blok dünyası seni bekliyor. Tüm modlar ve Türkçe yama ile uyumlu sürüm.</p>
+                    <a href="DIREKT_LINK_1" class="download-btn" download>PREMIUM İNDİR</a>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <span class="badge">FULL</span>
+                <div class="card-content">
+                    <h3 class="game-title">FNaF 2</h3>
+                    <p class="game-desc">Korku dolu 5 geceye hazır mısın? Fazbear ve arkadaşları seni bekliyor.</p>
+                    <a href="DIREKT_LINK_2" class="download-btn" download>PREMIUM İNDİR</a>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <span class="badge">V1.5</span>
+                <div class="card-content">
+                    <h3 class="game-title">Undertale</h3>
+                    <p class="game-desc">Bir yeraltı dünyasına düşen çocuğun hikayesi. Kimseye zarar vermeden bitirebilir misin?</p>
+                    <a href="DIREKT_LINK_3" class="download-btn" download>PREMIUM İNDİR</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="video-wrapper" id="egitim">
+            <h2 style="color: var(--primary); font-family: 'Orbitron';">NASIL İNDİRİLİR?</h2>
+            <p>Aşağıdaki videoyu izleyerek indirme ve kurulum işlemlerini hatasız yapabilirsiniz.</p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/VIDEO_KODUNUZ" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#">YouTube</a>
+            <a href="#">Discord</a>
+            <a href="#">Instagram</a>
+        </div>
+        <p style="margin-top: 20px; color: #555;">&copy; 2026 Oyun İndir Premium | Arkadaş Grubu Projesi</p>
+    </footer>
+
+</body>
+</html>
+
