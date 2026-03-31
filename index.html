@@ -3,296 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Undertale Premium | En Hızlı İndirme Portalı</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    <title>Undertale Premium | Global Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        /* --- GLOBAL & ANIMATION --- */
-        :root {
-            --neon-main: #00ffcc;
-            --neon-alt: #ff00ff;
-            --neon-gold: #ffd32a;
-            --bg-deep: #020202;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --border-line: rgba(255, 255, 255, 0.08);
-        }
-
+        :root { --neon: #00ffcc; --accent: #ff00ff; --dark: #050505; --panel: rgba(15, 15, 15, 0.95); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--bg-deep);
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
+        body { background: var(--dark); color: #fff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
+        
+        /* Arka Plan Hareketli Işıklar */
+        .bg-glow { position: fixed; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #111 0%, #000 100%); z-index: -1; }
+        
+        nav { background: #000; padding: 25px; border-bottom: 2px solid var(--neon); text-align: center; box-shadow: 0 0 20px var(--neon); }
+        .logo { font-family: 'Orbitron'; font-size: 28px; letter-spacing: 5px; color: var(--neon); text-shadow: 0 0 10px var(--neon); }
 
-        /* Animated Background Particles */
-        .bg-layer {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background: 
-                radial-gradient(circle at 10% 10%, rgba(0, 255, 204, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 90% 90%, rgba(255, 0, 255, 0.05) 0%, transparent 50%);
-        }
+        .wrapper { max-width: 900px; margin: 40px auto; padding: 0 20px; }
 
-        /* --- NAVBAR --- */
-        nav {
-            height: 90px;
-            background: rgba(0, 0, 0, 0.95);
-            border-bottom: 2px solid var(--neon-main);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(20px);
-            box-shadow: 0 5px 30px rgba(0, 255, 204, 0.2);
-        }
+        /* OYUN KARTI */
+        .hero-card { background: var(--panel); border: 1px solid #222; border-radius: 35px; padding: 60px; text-align: center; margin-bottom: 40px; position: relative; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.8); }
+        .hero-card::after { content: "PREMIUM v1.08"; position: absolute; top: 15px; right: -35px; background: var(--accent); color: #fff; padding: 8px 40px; transform: rotate(45deg); font-weight: bold; font-size: 12px; }
+        
+        .game-title { font-family: 'Orbitron'; font-size: clamp(40px, 8vw, 70px); margin-bottom: 10px; background: linear-gradient(to bottom, #fff, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .dl-btn { display: inline-block; margin-top: 30px; padding: 25px 80px; font-size: 28px; font-family: 'Orbitron'; color: #000; background: var(--neon); border-radius: 20px; text-decoration: none; font-weight: 900; box-shadow: 0 0 30px var(--neon); transition: 0.3s; }
+        .dl-btn:hover { transform: scale(1.05); background: #fff; box-shadow: 0 0 50px var(--neon); }
 
-        .nav-logo {
-            font-family: 'Orbitron';
-            font-size: 28px;
-            font-weight: 900;
-            letter-spacing: 5px;
-            color: var(--neon-main);
-            text-shadow: 0 0 20px var(--neon-main);
-            animation: pulse 2s infinite;
-        }
+        /* ÖZEL YORUM SİSTEMİ (Hata Vermez) */
+        .comment-box { background: var(--panel); border-radius: 35px; border: 1px solid #222; padding: 40px; text-align: left; }
+        .c-title { font-family: 'Orbitron'; color: var(--accent); font-size: 20px; margin-bottom: 30px; border-bottom: 1px solid #333; padding-bottom: 15px; }
 
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(0.98); }
-            100% { opacity: 1; transform: scale(1); }
-        }
+        .c-form { display: grid; gap: 15px; margin-bottom: 40px; }
+        .c-form input, .c-form textarea { background: #000; border: 1px solid #333; border-radius: 12px; padding: 15px; color: #fff; font-family: inherit; font-size: 16px; }
+        .c-form input:focus { border-color: var(--neon); outline: none; }
+        .c-submit { background: var(--neon); color: #000; padding: 15px; border-radius: 12px; border: none; font-weight: 900; font-family: 'Orbitron'; cursor: pointer; }
 
-        /* --- CONTAINER --- */
-        .wrapper {
-            max-width: 1100px;
-            margin: 60px auto;
-            padding: 0 20px;
-        }
+        .comment-list { display: flex; flex-direction: column; gap: 20px; max-height: 500px; overflow-y: auto; padding-right: 10px; }
+        .comment-item { background: rgba(255,255,255,0.02); padding: 20px; border-radius: 15px; border-left: 4px solid var(--neon); animation: fadeIn 0.5s ease; }
+        .c-user { font-weight: bold; color: var(--neon); margin-bottom: 5px; font-size: 18px; }
+        .c-text { color: #bbb; line-height: 1.6; }
 
-        /* --- HERO SECTION --- */
-        .premium-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--border-line);
-            border-radius: 50px;
-            padding: 80px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 40px 100px rgba(0,0,0,0.8);
-            margin-bottom: 60px;
-        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 10px; }
 
-        .premium-card::before {
-            content: "SECURE DOWNLOAD";
-            position: absolute;
-            top: 30px;
-            left: -40px;
-            background: var(--neon-main);
-            color: #000;
-            padding: 10px 100px;
-            transform: rotate(-45deg);
-            font-weight: bold;
-            font-size: 14px;
-            letter-spacing: 2px;
-        }
-
-        .game-title {
-            font-family: 'Orbitron';
-            font-size: clamp(50px, 10vw, 100px);
-            line-height: 1;
-            margin-bottom: 25px;
-            background: linear-gradient(to bottom, #fff, #444);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 900;
-        }
-
-        .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: rgba(0, 255, 204, 0.1);
-            border: 1px solid var(--neon-main);
-            padding: 8px 25px;
-            border-radius: 50px;
-            color: var(--neon-main);
-            font-size: 14px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
-        }
-
-        .status-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--neon-main);
-            border-radius: 50%;
-            box-shadow: 0 0 10px var(--neon-main);
-            animation: blink 1s infinite;
-        }
-
-        @keyframes blink { 50% { opacity: 0; } }
-
-        /* --- DOWNLOAD BUTTON --- */
-        .btn-premium {
-            position: relative;
-            display: inline-block;
-            padding: 30px 100px;
-            background: var(--neon-main);
-            color: #000;
-            font-family: 'Orbitron';
-            font-size: 32px;
-            font-weight: 900;
-            text-decoration: none;
-            border-radius: 20px;
-            box-shadow: 0 0 50px rgba(0, 255, 204, 0.4);
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-top: 20px;
-        }
-
-        .btn-premium:hover {
-            transform: translateY(-10px) scale(1.05);
-            background: #fff;
-            box-shadow: 0 0 80px var(--neon-main);
-        }
-
-        /* --- INFO GRID --- */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-top: 60px;
-        }
-
-        .info-box {
-            background: rgba(255,255,255,0.01);
-            border: 1px solid var(--border-line);
-            padding: 30px;
-            border-radius: 30px;
-            transition: 0.3s;
-        }
-
-        .info-box:hover { background: rgba(255,255,255,0.03); border-color: var(--neon-alt); }
-        .info-box h3 { font-family: 'Orbitron'; color: var(--neon-gold); font-size: 14px; margin-bottom: 10px; }
-        .info-box p { font-size: 24px; font-weight: bold; }
-
-        /* --- CHAT SECTION --- */
-        .chat-container {
-            background: var(--glass-bg);
-            border: 1px solid var(--border-line);
-            border-radius: 50px;
-            padding: 50px;
-            backdrop-filter: blur(15px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            text-align: left;
-        }
-
-        .chat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 1px solid var(--border-line);
-            padding-bottom: 20px;
-        }
-
-        .chat-header h2 {
-            font-family: 'Orbitron';
-            color: var(--neon-alt);
-            font-size: 22px;
-            letter-spacing: 2px;
-        }
-
-        .chat-frame {
-            border-radius: 25px;
-            overflow: hidden;
-            border: 2px solid #222;
-            background: #000;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            padding: 100px 20px;
-            text-align: center;
-            opacity: 0.2;
-            font-family: 'Orbitron';
-            font-size: 12px;
-            letter-spacing: 10px;
-        }
-
+        footer { text-align: center; padding: 60px; color: #222; font-family: 'Orbitron'; letter-spacing: 5px; font-size: 12px; }
     </style>
 </head>
 <body>
-
-    <div class="bg-layer"></div>
-
-    <nav>
-        <div class="nav-logo">OYUN İNDİR PREMIUM</div>
-    </nav>
+    <div class="bg-glow"></div>
+    <nav><div class="logo">OYUN İNDİR PREMIUM</div></nav>
 
     <div class="wrapper">
-        <section class="premium-card">
-            <div class="status-badge">
-                <div class="status-dot"></div>
-                GOOGLE DRIVE SERVER ONLINE
-            </div>
-            
+        <div class="hero-card">
             <h1 class="game-title">UNDERTALE</h1>
-            <p style="color: #666; font-size: 20px; margin-bottom: 40px; font-weight: 500;">
-                Kusursuz Hikaye, Maksimum Performans. Reklam Yok, Bekleme Yok.
-            </p>
+            <p style="color: #666; font-size: 18px;">Official Premium Mirror | Ads-Free | High Speed</p>
+            <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="dl-btn">HEMEN İNDİR</a>
+        </div>
 
-            <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="btn-premium">
-                PREMIUM İNDİR
-            </a>
-
-            <div class="info-grid">
-                <div class="info-box">
-                    <h3>BOYUT</h3>
-                    <p>130.4 MB</p>
-                </div>
-                <div class="info-box">
-                    <h3>SÜRÜM</h3>
-                    <p>v1.08 Full</p>
-                </div>
-                <div class="info-box">
-                    <h3>GÜVENLİK</h3>
-                    <p style="color: var(--neon-main);">TEMİZ</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="chat-container">
-            <div class="chat-header">
-                <h2>CANLI OYUNCU PLATFORMU</h2>
-                <div style="color: #444; font-size: 12px;">GERÇEK ZAMANLI VERİ AKIŞI</div>
-            </div>
-
-            <div class="chat-frame">
-                <iframe src="https://www3.cbox.ws/box/?boxid=3534563&boxtag=m6v2y9" width="100%" height="550" allowtransparency="yes" allow="autoplay" frameborder="0" marginheight="0" marginwidth="0" scrolling="auto"></iframe>
-            </div>
+        <div class="comment-box">
+            <h2 class="c-title">KULLANICI GERİ BİLDİRİMLERİ</h2>
             
-            <p style="margin-top: 20px; color: #444; font-size: 13px; text-align: center;">
-                *Yorum yapmak için kayıt olmanız gerekmez. Takma ad yazıp sohbete başlayın.
-            </p>
-        </section>
+            <div class="c-form">
+                <input type="text" id="nameInput" placeholder="Adınız / Nickname">
+                <textarea id="textInput" rows="3" placeholder="Yorumunuzu buraya yazın..."></textarea>
+                <button class="c-submit" onclick="postComment()">YORUMU YAYINLA</button>
+            </div>
+
+            <div id="comments" class="comment-list">
+                <div class="comment-item">
+                    <div class="c-user">Admin_Efe</div>
+                    <div class="c-text">Linkler tazelendi, Undertale v1.08 sorunsuz çalışıyor. İyi oyunlar!</div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <footer>
-        PREMIUM GAME ARCHIVE - POWERED BY AI 2026
-    </footer>
+    <footer>PREMIUM SYSTEM 2026</footer>
 
     <script>
-        // Sayfa yüklendiğinde ufak bir selamlama
-        console.log("%c Oyun İndir Premium Aktif! ", "background: #00ffcc; color: #000; font-weight: bold;");
-    </script>
+        function postComment() {
+            const name = document.getElementById('nameInput').value || "Gizli Oyuncu";
+            const text = document.getElementById('textInput').value;
+            if(!text) return alert("Mesaj boş olamaz!");
 
+            const list = document.getElementById('comments');
+            const item = document.createElement('div');
+            item.className = 'comment-item';
+            item.innerHTML = `<div class="c-user">${name}</div><div class="c-text">${text}</div>`;
+            
+            list.prepend(item);
+            document.getElementById('textInput').value = "";
+            alert("Yorumun başarıyla eklendi!");
+        }
+    </script>
 </body>
 </html>
