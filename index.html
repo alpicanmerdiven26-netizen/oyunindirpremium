@@ -4,136 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Oyun İndir Premium | Undertale v1.08</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
     <style>
-        :root { --primary: #ffd32a; --secondary: #05c46b; --bg: #050505; --card: #121212; }
-        body { background-color: var(--bg); color: #fff; font-family: 'Poppins', sans-serif; margin: 0; padding: 0; }
+        :root { --neon-yellow: #f1c40f; --neon-green: #2ecc71; --dark-bg: #050505; --card-bg: #111111; }
         
-        /* Navbar */
-        .header { background: #000; padding: 25px; border-bottom: 3px solid var(--primary); text-align: center; }
-        .header h1 { font-family: 'Orbitron'; margin: 0; font-size: 28px; letter-spacing: 2px; color: var(--primary); text-shadow: 0 0 15px rgba(255, 211, 42, 0.4); }
+        * { box-sizing: border-box; }
+        body { background-color: var(--dark-bg); color: #fff; font-family: 'Rajdhani', sans-serif; margin: 0; overflow-x: hidden; }
 
-        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+        /* Arka Plan Efekti */
+        body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%); z-index: -1; }
 
-        /* Oyun Kartı */
-        .game-hero { background: linear-gradient(135deg, #151515 0%, #080808 100%); border-radius: 25px; padding: 50px; border: 1px solid #222; text-align: center; position: relative; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        .game-hero::after { content: 'PREMIUM'; position: absolute; top: 10px; right: -30px; background: var(--primary); color: #000; padding: 10px 40px; transform: rotate(45deg); font-weight: bold; font-size: 12px; }
-        
-        .game-title { font-family: 'Orbitron'; font-size: 48px; margin: 10px 0; background: linear-gradient(to right, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .game-meta { color: #666; font-size: 14px; margin-bottom: 30px; letter-spacing: 1px; }
+        /* Header */
+        .navbar { background: rgba(0,0,0,0.9); padding: 20px; border-bottom: 2px solid var(--neon-yellow); text-align: center; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .navbar h1 { font-family: 'Orbitron'; margin: 0; font-size: 26px; color: var(--neon-yellow); text-shadow: 0 0 10px rgba(241, 196, 15, 0.5); letter-spacing: 3px; }
 
-        .download-btn { display: inline-block; background: var(--secondary); color: #fff; padding: 25px 60px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 24px; transition: 0.4s; border: 2px solid transparent; box-shadow: 0 10px 30px rgba(5, 196, 107, 0.3); }
-        .download-btn:hover { transform: scale(1.05); background: transparent; border-color: var(--secondary); box-shadow: 0 0 40px rgba(5, 196, 107, 0.5); }
+        .main-container { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
 
-        /* Yorumlar Paneli */
-        .comment-section { margin-top: 60px; background: var(--card); border-radius: 25px; padding: 40px; border: 1px solid #222; text-align: left; }
-        .comment-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #222; padding-bottom: 20px; margin-bottom: 30px; }
-        .comment-header h2 { font-family: 'Orbitron'; color: var(--primary); margin: 0; font-size: 20px; }
+        /* Oyun Tanıtım Kartı */
+        .hero-section { background: var(--card-bg); border-radius: 30px; padding: 60px; border: 1px solid #222; position: relative; text-align: center; box-shadow: 0 30px 60px rgba(0,0,0,0.7); animation: fadeIn 1s ease-out; }
+        .hero-section::before { content: "TOP RATED"; position: absolute; top: 20px; left: 20px; color: var(--neon-green); font-weight: bold; font-size: 12px; border: 1px solid var(--neon-green); padding: 5px 10px; border-radius: 5px; }
 
-        .comment-form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 40px; }
-        .comment-form input, .comment-form textarea { background: #080808; border: 1px solid #333; border-radius: 12px; padding: 15px; color: #fff; font-family: inherit; font-size: 15px; }
-        .comment-form input:focus, .comment-form textarea:focus { border-color: var(--primary); outline: none; }
-        .submit-btn { background: var(--primary); color: #000; border: none; padding: 15px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: 0.3s; align-self: flex-end; width: 150px; }
-        .submit-btn:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 211, 42, 0.3); }
+        .game-title { font-family: 'Orbitron'; font-size: 56px; margin: 20px 0; background: linear-gradient(45deg, #fff, var(--neon-yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .game-info { color: #888; font-size: 18px; margin-bottom: 40px; }
 
-        .comment-item { background: #0d0d0d; padding: 20px; border-radius: 15px; margin-bottom: 15px; border: 1px solid #1a1a1a; transition: 0.3s; }
-        .comment-item:hover { border-color: #333; }
-        .user-info { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
-        .user-avatar { width: 35px; height: 35px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 14px; }
-        .user-name { font-weight: 600; color: #fff; font-size: 16px; }
-        .comment-body { color: #aaa; line-height: 1.6; font-size: 15px; padding-left: 45px; }
+        /* İndirme Butonu */
+        .dl-button { display: inline-block; padding: 25px 80px; font-size: 28px; font-family: 'Orbitron'; font-weight: bold; color: #000; text-decoration: none; background: var(--neon-yellow); border-radius: 15px; transition: 0.3s; box-shadow: 0 0 20px rgba(241, 196, 15, 0.4); position: relative; overflow: hidden; }
+        .dl-button:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 0 40px rgba(241, 196, 15, 0.6); background: #fff; }
+        .dl-button:active { transform: translateY(0); }
 
-        footer { text-align: center; padding: 50px; color: #333; font-size: 12px; letter-spacing: 1px; }
+        /* Yorum Paneli */
+        .comments-wrapper { margin-top: 60px; background: rgba(20,20,20,0.8); border-radius: 30px; padding: 40px; border: 1px solid #333; }
+        .section-title { font-family: 'Orbitron'; color: var(--neon-yellow); font-size: 20px; margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; }
+        .rating { color: #555; font-size: 14px; }
+        .rating span { color: var(--neon-yellow); }
+
+        /* Animasyon */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { text-align: center; padding: 60px; color: #444; font-size: 13px; }
+
+        /* CUSDIS YORUM ÖZELLEŞTİRME */
+        #cusdis_thread { color-scheme: dark; }
     </style>
 </head>
 <body>
 
-    <div class="header">
+    <nav class="navbar">
         <h1>OYUN İNDİR PREMIUM</h1>
-    </div>
+    </nav>
 
-    <div class="container">
-        <div class="game-hero">
-            <div class="game-meta">👑 PREMIUM SUNUCU • REKLAMSIZ • JET HIZI</div>
+    <div class="main-container">
+        <div class="hero-section">
+            <div class="game-info">👑 PREMIUM SERVER • AD-FREE • 1GBPS SPEED</div>
             <h2 class="game-title">UNDERTALE</h2>
-            <p style="color: #888; font-size: 18px; margin-bottom: 30px;">Zamanın ötesinde bir hikaye. Şimdi en hızlı sunucuda.</p>
+            <p style="margin-bottom: 40px; color: #bbb;">Efsanevi RPG deneyimi şimdi en temiz haliyle burada. Tek tıkla indir, hemen oyna.</p>
             
-            <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="download-btn">Hemen İndir</a>
+            <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="dl-button">ŞİMDİ İNDİR</a>
             
-            <div style="margin-top: 25px; font-size: 12px; color: #444;">Boyut: 130.4 MB | Sürüm: v1.08 Final</div>
+            <div style="margin-top: 30px; color: #555; font-size: 14px;">v1.08 Original Edition | PC-Windows</div>
         </div>
 
-        <div class="comment-section">
-            <div class="comment-header">
-                <h2>GERÇEK KULLANICI YORUMLARI</h2>
-                <span style="color: var(--primary); font-size: 14px;">⭐ 4.9 / 5.0</span>
+        <div class="comments-wrapper">
+            <div class="section-title">
+                TOPLULUK YORUMLARI
+                <div class="rating">Müşteri Memnuniyeti: <span>★★★★★ 4.9</span></div>
             </div>
 
-            <div class="comment-form">
-                <input type="text" id="nick" placeholder="Adınız veya Lakabınız...">
-                <textarea id="msg" rows="3" placeholder="Yorumunuzu veya istek oyununuzu yazın..."></textarea>
-                <button class="submit-btn" onclick="postComment()">Yorum Yap</button>
+            <div id="cusdis_thread"
+                data-host="https://cusdis.com"
+                data-app-id="68d90479-7a0e-445a-8b17-09d6f63456a2"
+                data-page-id="undertale_page_001"
+                data-page-url="window.location.href"
+                data-page-title="Undertale Premium"
+                data-theme="dark">
             </div>
-
-            <div id="commentBox">
-                <div class="comment-item">
-                    <div class="user-info">
-                        <div class="user-avatar">A</div>
-                        <span class="user-name">Ahmet_Pro2026</span>
-                    </div>
-                    <div class="comment-body">Dosyayı indirdim, Google Drive hızı efsane olmuş. Teşekkürler admin!</div>
-                </div>
-            </div>
+            <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
         </div>
     </div>
 
     <footer>
-        © 2026 OYUN İNDİR PREMIUM PORTAL | TÜM HAKLARI SAKLIDIR
+        &copy; 2026 OYUN İNDİR PREMIUM | TÜRKİYE'NİN EN HIZLI OYUN PORTALI
     </footer>
-
-    <script>
-        // Yorumları LocalStorage üzerinden kaydeder (Kalıcı olmasını sağlar)
-        function loadComments() {
-            const comments = JSON.parse(localStorage.getItem('mySiteComments') || '[]');
-            const box = document.getElementById('commentBox');
-            comments.forEach(c => {
-                box.innerHTML = createCommentHTML(c.name, c.text) + box.innerHTML;
-            });
-        }
-
-        function createCommentHTML(name, text) {
-            const initial = name.charAt(0).toUpperCase();
-            return `
-                <div class="comment-item">
-                    <div class="user-info">
-                        <div class="user-avatar">${initial}</div>
-                        <span class="user-name">${name}</span>
-                    </div>
-                    <div class="comment-body">${text}</div>
-                </div>
-            `;
-        }
-
-        function postComment() {
-            const nick = document.getElementById('nick').value || "Gizli Oyuncu";
-            const msg = document.getElementById('msg').value;
-
-            if(msg.trim() === "") { alert("Boş yorum yapamazsın!"); return; }
-
-            const box = document.getElementById('commentBox');
-            box.innerHTML = createCommentHTML(nick, msg) + box.innerHTML;
-
-            // Kaydet (Tarayıcıda saklanır)
-            const comments = JSON.parse(localStorage.getItem('mySiteComments') || '[]');
-            comments.push({name: nick, text: msg});
-            localStorage.setItem('mySiteComments', JSON.stringify(comments));
-
-            document.getElementById('nick').value = "";
-            document.getElementById('msg').value = "";
-        }
-
-        window.onload = loadComments;
-    </script>
 
 </body>
 </html>
