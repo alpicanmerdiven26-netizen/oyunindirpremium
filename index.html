@@ -6,7 +6,7 @@
     <title>OYUN İNDİR PREMİUM | Official Game Repository</title>
     <style>
         /* GENEL TASARIM AYARLARI */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #0b0b0b; color: #e0e0e0; line-height: 1.6; overflow-x: hidden; }
 
         /* ÜST HABER BANDI */
@@ -17,8 +17,8 @@
         .logo { font-size: 22px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -1px; text-transform: uppercase; }
         .logo span { color: #ff4b2b; }
         .nav-links { list-style: none; display: flex; gap: 30px; }
-        .nav-links li { font-size: 13px; font-weight: 600; cursor: pointer; color: #999; transition: 0.3s; text-transform: uppercase; }
-        .nav-links li:hover { color: #ff4b2b; }
+        .nav-links li a { font-size: 13px; font-weight: 600; cursor: pointer; color: #999; transition: 0.3s; text-transform: uppercase; text-decoration: none; }
+        .nav-links li a:hover { color: #ff4b2b; }
         
         .user-actions { display: flex; gap: 15px; align-items: center; }
         .search-box { background: #1a1a1a; border: 1px solid #333; padding: 8px 15px; border-radius: 5px; color: #fff; font-size: 12px; outline: none; }
@@ -38,6 +38,7 @@
         
         /* OYUN KARTI TASARIMI */
         .game-card { background: #161616; border-radius: 16px; width: 380px; overflow: hidden; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
+        .game-card.highlight { border-color: #ff4b2b; box-shadow: 0 0 20px #ff4b2b; transform: scale(1.05); }
         .game-card:hover { transform: translateY(-15px); border-color: #ff4b2b; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
         
         .badge { position: absolute; top: 20px; right: 20px; background: #ff4b2b; color: white; font-size: 10px; padding: 5px 10px; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3); }
@@ -61,7 +62,7 @@
         .footer-info { display: flex; justify-content: space-between; flex-wrap: wrap; text-align: left; margin-bottom: 50px; }
         .footer-col { width: 250px; margin-bottom: 30px; }
         .footer-col h4 { font-size: 15px; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        .footer-col p, .footer-col li { font-size: 13px; color: #555; list-style: none; margin-bottom: 10px; }
+        .footer-col p, .footer-col li { font-size: 13px; color: #555; list-style: none; margin-bottom: 10px; cursor: pointer; }
         .copyright { border-top: 1px solid #111; padding-top: 30px; font-size: 12px; color: #333; font-weight: bold; }
     </style>
 </head>
@@ -72,15 +73,15 @@
     <nav class="navbar">
         <a href="#" class="logo">OYUN İNDİR <span>PREMİUM</span></a>
         <ul class="nav-links">
-            <li>Kütüphane</li>
-            <li>Yama Notları</li>
-            <li>Haberler</li>
-            <li>Topluluk</li>
-            <li>Destek</li>
+            <li><a href="#kutuphane">Kütüphane</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Yama Notları: Yakında eklenecek!')">Yama Notları</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Haberler: Çok yakında burada!')">Haberler</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Topluluk: Forum yakında açılacak!')">Topluluk</a></li>
+            <li><a href="javascript:void(0)" onclick="alert('Destek: info@oyunindirpremium.com üzerinden ulaşın.')">Destek</a></li>
         </ul>
         <div class="user-actions">
-            <input type="text" class="search-box" placeholder="Hızlı oyun ara...">
-            <span style="font-size: 12px; cursor: pointer; color: #ff4b2b; font-weight: bold;">[GİRİŞ YAP]</span>
+            <input type="text" id="gameSearch" class="search-box" placeholder="Hızlı oyun ara..." onkeydown="if(event.key==='Enter') searchGame()">
+            <span onclick="alert('Giriş Paneli Bakımda!')" style="font-size: 12px; cursor: pointer; color: #ff4b2b; font-weight: bold;">[GİRİŞ YAP]</span>
         </div>
     </nav>
 
@@ -98,9 +99,9 @@
         <p>En sevilen kült oyunlar, doğrudan Google Drive hızıyla ve tamamen güncel sürümleriyle elinin altında.</p>
     </section>
 
-    <div class="game-grid">
+    <div class="game-grid" id="kutuphane">
         
-        <div class="game-card">
+        <div class="game-card" id="game-terraria">
             <span class="badge">V1.4.4.9 GÜNCEL</span>
             <div class="game-content">
                 <h2 class="game-title">🌳 Terraria</h2>
@@ -117,7 +118,7 @@
             </div>
         </div>
 
-        <div class="game-card">
+        <div class="game-card" id="game-undertale">
             <span class="badge">V1.08 FULL</span>
             <div class="game-content">
                 <h2 class="game-title">❤️ Undertale</h2>
@@ -144,9 +145,9 @@
             </div>
             <div class="footer-col">
                 <h4>NAVİGASYON</h4>
-                <li>Gizlilik Politikası</li>
-                <li>DMCA / Telif Hakları</li>
-                <li>Hata Bildirimi</li>
+                <li onclick="alert('Gizlilik Politikası: Verileriniz Drive güvencesindedir.')">Gizlilik Politikası</li>
+                <li onclick="alert('Telif: Tüm haklar geliştiricilere aittir.')">DMCA / Telif Hakları</li>
+                <li onclick="alert('Lütfen linkleri kontrol edin.')">Hata Bildirimi</li>
             </div>
             <div class="footer-col">
                 <h4>SİSTEM DURUMU</h4>
@@ -159,6 +160,30 @@
             © 2026 OYUN İNDİR PREMİUM GLOBAL. TÜM HAKLARI SAKLIDIR.
         </div>
     </footer>
+
+    <script>
+        function searchGame() {
+            const input = document.getElementById('gameSearch').value.toLowerCase();
+            const terraria = document.getElementById('game-terraria');
+            const undertale = document.getElementById('game-undertale');
+            
+            // Highlight sıfırlama
+            terraria.classList.remove('highlight');
+            undertale.classList.remove('highlight');
+
+            if (input === "") return;
+
+            if (input.includes('terra')) {
+                terraria.scrollIntoView({ behavior: 'smooth' });
+                terraria.classList.add('highlight');
+            } else if (input.includes('under')) {
+                undertale.scrollIntoView({ behavior: 'smooth' });
+                undertale.classList.add('highlight');
+            } else {
+                alert("Oyun bulunamadı!");
+            }
+        }
+    </script>
 
 </body>
 </html>
