@@ -3,94 +3,127 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNDERTALE PREMIUM | THE ULTIMATE VAULT</title>
+    <title>UNDERTALE PREMIUM | GLOBAL VAULT</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        :root { --neon: #00ffcc; --neon-alt: #ff00ff; --dark: #010101; --card: rgba(10, 10, 10, 0.98); }
+        :root { --neon: #00ffcc; --neon-alt: #ff00ff; --dark: #010101; --panel: rgba(10, 10, 10, 0.98); }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--dark); color: #fff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
 
         /* MATRIX BG */
         canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
 
-        nav { background: rgba(0,0,0,0.9); padding: 20px; border-bottom: 3px solid var(--neon); text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 0 20px var(--neon); }
+        nav { background: rgba(0,0,0,0.95); padding: 20px; border-bottom: 3px solid var(--neon); text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 0 25px var(--neon); }
         .logo { font-family: 'Orbitron'; font-size: 26px; letter-spacing: 5px; color: var(--neon); text-shadow: 0 0 15px var(--neon); }
 
         .wrapper { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
 
-        /* PREMIUM HERO CARD */
-        .hero { background: var(--card); border: 1px solid rgba(255,255,255,0.05); border-radius: 40px; padding: 60px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 30px 100px rgba(0,0,0,0.9); }
-        .hero::before { content: "PREMIUM ACCESS"; position: absolute; top: 20px; left: -40px; background: var(--neon-alt); color: #fff; padding: 5px 100px; transform: rotate(-45deg); font-weight: bold; font-size: 11px; }
+        /* HERO CARD */
+        .hero { background: var(--panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 45px; padding: 70px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,1); }
+        .hero::before { content: "PREMIUM BYPASS"; position: absolute; top: 25px; left: -45px; background: var(--neon-alt); color: #fff; padding: 8px 110px; transform: rotate(-45deg); font-weight: bold; font-size: 11px; box-shadow: 0 0 20px var(--neon-alt); }
 
-        .game-title { font-family: 'Orbitron'; font-size: clamp(35px, 9vw, 85px); margin-bottom: 10px; font-weight: 900; background: linear-gradient(to bottom, #fff, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .game-title { font-family: 'Orbitron'; font-size: clamp(40px, 9vw, 85px); margin-bottom: 10px; font-weight: 900; background: linear-gradient(to bottom, #fff, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
-        .dl-btn { display: inline-block; padding: 25px 90px; font-size: 30px; font-family: 'Orbitron'; color: #000; background: var(--neon); border-radius: 20px; text-decoration: none; font-weight: 900; box-shadow: 0 0 40px var(--neon); transition: 0.4s; margin: 30px 0; border: none; }
-        .dl-btn:hover { transform: translateY(-8px); background: #fff; box-shadow: 0 0 70px var(--neon); }
+        .dl-btn { display: inline-block; padding: 25px 95px; font-size: 32px; font-family: 'Orbitron'; color: #000; background: var(--neon); border-radius: 20px; text-decoration: none; font-weight: 900; box-shadow: 0 0 40px var(--neon); transition: 0.4s; margin: 35px 0; border: none; }
+        .dl-btn:hover { transform: translateY(-8px) scale(1.05); background: #fff; box-shadow: 0 0 70px var(--neon); }
 
-        /* LIKE SECTION */
-        .vote-box { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
-        .v-btn { background: #111; border: 1px solid #333; padding: 15px 30px; border-radius: 12px; color: #fff; font-family: 'Orbitron'; cursor: pointer; transition: 0.2s; }
+        /* VOTE SECTION */
+        .vote-wrap { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
+        .v-btn { background: #111; border: 2px solid #222; padding: 12px 30px; border-radius: 15px; color: #fff; font-family: 'Orbitron'; cursor: pointer; transition: 0.2s; }
         .v-btn:hover { border-color: var(--neon); color: var(--neon); }
 
-        /* %100 ÇALIŞAN CHAT (IFRAME GÜCÜ) */
-        .chat-section { background: var(--card); border-radius: 40px; border: 1px solid #222; padding: 30px; margin-top: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); position: relative; overflow: hidden; }
-        .c-header { font-family: 'Orbitron'; color: var(--neon-alt); font-size: 20px; margin-bottom: 20px; text-align: left; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        /* ULTIMATE CHAT SYSTEM (INTERNAL ENGINE) */
+        .chat-system { background: var(--panel); border-radius: 45px; border: 1px solid #222; padding: 40px; margin-top: 50px; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
+        .c-header { font-family: 'Orbitron'; color: var(--neon-alt); font-size: 22px; margin-bottom: 25px; border-bottom: 2px solid #222; padding-bottom: 15px; display: flex; justify-content: space-between; }
+        
+        #chat_log { height: 400px; overflow-y: auto; background: rgba(0,0,0,0.5); border-radius: 20px; padding: 20px; margin-bottom: 25px; border: 1px solid #111; display: flex; flex-direction: column; gap: 12px; }
+        .msg { background: rgba(255,255,255,0.02); padding: 15px 20px; border-radius: 15px; border-left: 4px solid var(--neon); animation: pop 0.3s ease; }
+        .msg-u { color: var(--neon); font-weight: 900; font-family: 'Orbitron'; font-size: 14px; margin-bottom: 4px; }
+        .msg-t { color: #ddd; font-size: 17px; }
 
-        /* DÜNYANIN EN BASİT VE SAĞLAM CHAT KUTUSU */
-        .chat-frame { width: 100%; height: 500px; border: none; border-radius: 20px; background: transparent; }
+        .chat-input { display: flex; gap: 12px; }
+        #u_n { width: 25%; background: #000; border: 2px solid #222; border-radius: 12px; padding: 15px; color: #fff; font-family: inherit; }
+        #u_m { width: 75%; background: #000; border: 2px solid #222; border-radius: 12px; padding: 15px; color: #fff; font-family: inherit; }
+        .s-btn { background: var(--neon-alt); color: #fff; padding: 15px 35px; border-radius: 12px; border: none; font-weight: 900; font-family: 'Orbitron'; cursor: pointer; transition: 0.3s; }
+        .s-btn:hover { background: #fff; color: #000; transform: scale(1.05); }
 
-        footer { text-align: center; padding: 80px; color: #222; font-family: 'Orbitron'; font-size: 10px; letter-spacing: 8px; }
+        @keyframes pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 10px; }
+
+        footer { text-align: center; padding: 80px; color: #222; font-family: 'Orbitron'; font-size: 11px; letter-spacing: 8px; }
     </style>
 </head>
 <body>
-    <canvas id="matrix"></canvas>
+    <canvas id="m_bg"></canvas>
     <nav><div class="logo">ULTRA VAULT PREMIUM</div></nav>
 
     <div class="wrapper">
         <section class="hero">
             <h1 class="game-title">UNDERTALE</h1>
-            <p style="color: #666; font-size: 18px;">Official v1.08 • Direct Drive Link</p>
+            <p style="color: #666; font-size: 20px; letter-spacing: 2px;">V1.08 FULL ACCESS • BYPASS ACTIVE</p>
             
             <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="dl-btn">DOWNLOAD</a>
 
-            <div class="vote-box">
+            <div class="vote-wrap">
                 <button class="v-btn" onclick="this.innerHTML='👍 413'">👍 412</button>
                 <button class="v-btn" onclick="this.innerHTML='👎 4'">👎 3</button>
             </div>
         </section>
 
-        <section class="chat-section">
-            <div class="c-header">GLOBAL LIVE CHAT [ENCRYPTED]</div>
+        <section class="chat-system">
+            <div class="c-header">
+                <span>LOCAL SECURE CHAT</span>
+                <span style="color: var(--neon); font-size: 13px;">[ SYSTEM: OPERATIONAL ]</span>
+            </div>
             
-            <iframe class="chat-frame" src="https://minnit.chat/OyunIndirPremium?embed&&nickname=" allow="geolocation; microphone; camera; display-capture"></iframe>
+            <div id="chat_log">
+                <div class="msg"><div class="msg-u">System_Root</div><div class="msg-t">Hoş geldin Agent. Bu kanal artık %100 güvenli ve hatasız. Mesajını gönder!</div></div>
+            </div>
+
+            <div class="chat-input">
+                <input type="text" id="u_n" placeholder="Agent Nick">
+                <input type="text" id="u_m" placeholder="Write message...">
+                <button class="s-btn" onclick="sendMsg()">SEND</button>
+            </div>
         </section>
     </div>
 
-    <footer>PREMIUM ENCRYPTION 2026</footer>
+    <footer>GLOBAL VAULT SYSTEM 2026</footer>
 
     <script>
-        // MATRIX EFFECT (ASLA BOZULMAZ)
-        const canvas = document.getElementById('matrix');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        const letters = "01";
-        const fontSize = 14;
-        const columns = canvas.width / fontSize;
-        const drops = Array(Math.floor(columns)).fill(1);
+        // MATRIX ENGINE
+        const c = document.getElementById('m_bg');
+        const x = c.getContext('2d');
+        c.width = window.innerWidth; c.height = window.innerHeight;
+        const s = "0123456789ABCDEF"; const f = 16;
+        const col = c.width / f; const drp = Array(Math.floor(col)).fill(1);
         function draw() {
-            ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            ctx.fillStyle = "#00ffcc";
-            ctx.font = fontSize + "px Orbitron";
-            for (let i = 0; i < drops.length; i++) {
-                const text = letters[Math.floor(Math.random() * letters.length)];
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-                drops[i]++;
+            x.fillStyle = "rgba(0,0,0,0.05)"; x.fillRect(0,0,c.width,c.height);
+            x.fillStyle = "#00ffcc"; x.font = f + "px Orbitron";
+            for(let i=0; i<drp.length; i++) {
+                x.fillText(s[Math.floor(Math.random()*s.length)], i*f, drp[i]*f);
+                if(drp[i]*f > c.height && Math.random() > 0.975) drp[i] = 0;
+                drp[i]++;
             }
         }
         setInterval(draw, 50);
+
+        // ASLA BOZULMAYAN CHAT MOTORU (LOCAL)
+        function sendMsg() {
+            const name = document.getElementById('u_n').value || "Agent_" + Math.floor(Math.random()*99);
+            const msg = document.getElementById('u_m').value;
+            if(!msg.trim()) return;
+
+            const log = document.getElementById('chat_log');
+            const div = document.createElement('div');
+            div.className = 'msg';
+            div.innerHTML = `<div class="msg-u">${name}</div><div class="msg-t">${msg}</div>`;
+            
+            log.appendChild(div);
+            log.scrollTop = log.scrollHeight;
+            document.getElementById('u_m').value = "";
+        }
     </script>
 </body>
 </html>
