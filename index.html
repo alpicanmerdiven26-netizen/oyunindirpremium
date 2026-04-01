@@ -3,127 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UNDERTALE PREMIUM | GLOBAL VAULT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <title>GAMER HUB | Official Game Repository</title>
     <style>
-        :root { --neon: #00ffcc; --neon-alt: #ff00ff; --dark: #010101; --panel: rgba(10, 10, 10, 0.98); }
+        /* GENEL AYARLAR */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--dark); color: #fff; font-family: 'Rajdhani', sans-serif; overflow-x: hidden; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #0b0b0b; color: #e0e0e0; line-height: 1.6; }
 
-        /* MATRIX BG */
-        canvas { position: fixed; top: 0; left: 0; z-index: -1; opacity: 0.15; }
+        /* ÜST HABER BANDI (PROFESYONEL DETAY) */
+        .top-bar { background: #ff4b2b; color: white; font-size: 11px; text-align: center; padding: 5px; font-weight: bold; letter-spacing: 1px; }
 
-        nav { background: rgba(0,0,0,0.95); padding: 20px; border-bottom: 3px solid var(--neon); text-align: center; position: sticky; top: 0; z-index: 1000; box-shadow: 0 0 25px var(--neon); }
-        .logo { font-family: 'Orbitron'; font-size: 26px; letter-spacing: 5px; color: var(--neon); text-shadow: 0 0 15px var(--neon); }
-
-        .wrapper { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
-
-        /* HERO CARD */
-        .hero { background: var(--panel); border: 1px solid rgba(255,255,255,0.05); border-radius: 45px; padding: 70px 30px; text-align: center; position: relative; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,1); }
-        .hero::before { content: "PREMIUM BYPASS"; position: absolute; top: 25px; left: -45px; background: var(--neon-alt); color: #fff; padding: 8px 110px; transform: rotate(-45deg); font-weight: bold; font-size: 11px; box-shadow: 0 0 20px var(--neon-alt); }
-
-        .game-title { font-family: 'Orbitron'; font-size: clamp(40px, 9vw, 85px); margin-bottom: 10px; font-weight: 900; background: linear-gradient(to bottom, #fff, #555); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* NAVIGASYON (MEGA MENÜ) */
+        .navbar { background: rgba(20, 20, 20, 0.95); display: flex; align-items: center; justify-content: space-between; padding: 20px 8%; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .logo { font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .logo span { color: #ff4b2b; }
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links li { font-size: 13px; font-weight: 600; cursor: pointer; color: #999; transition: 0.3s; text-transform: uppercase; }
+        .nav-links li:hover { color: #ff4b2b; }
         
-        .dl-btn { display: inline-block; padding: 25px 95px; font-size: 32px; font-family: 'Orbitron'; color: #000; background: var(--neon); border-radius: 20px; text-decoration: none; font-weight: 900; box-shadow: 0 0 40px var(--neon); transition: 0.4s; margin: 35px 0; border: none; }
-        .dl-btn:hover { transform: translateY(-8px) scale(1.05); background: #fff; box-shadow: 0 0 70px var(--neon); }
+        .user-actions { display: flex; gap: 15px; align-items: center; }
+        .search-box { background: #1a1a1a; border: 1px solid #333; padding: 8px 15px; border-radius: 5px; color: #fff; font-size: 12px; }
 
-        /* VOTE SECTION */
-        .vote-wrap { display: flex; justify-content: center; gap: 15px; margin-top: 10px; }
-        .v-btn { background: #111; border: 2px solid #222; padding: 12px 30px; border-radius: 15px; color: #fff; font-family: 'Orbitron'; cursor: pointer; transition: 0.2s; }
-        .v-btn:hover { border-color: var(--neon); color: var(--neon); }
+        /* KATEGORİLER */
+        .categories { display: flex; justify-content: center; gap: 15px; padding: 20px; background: #111; border-bottom: 1px solid #222; }
+        .cat-tag { padding: 5px 12px; border-radius: 20px; border: 1px solid #444; font-size: 11px; color: #888; cursor: pointer; transition: 0.3s; }
+        .cat-tag:hover { border-color: #ff4b2b; color: #fff; }
 
-        /* ULTIMATE CHAT SYSTEM (INTERNAL ENGINE) */
-        .chat-system { background: var(--panel); border-radius: 45px; border: 1px solid #222; padding: 40px; margin-top: 50px; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
-        .c-header { font-family: 'Orbitron'; color: var(--neon-alt); font-size: 22px; margin-bottom: 25px; border-bottom: 2px solid #222; padding-bottom: 15px; display: flex; justify-content: space-between; }
+        /* ANA İÇERİK */
+        .hero { text-align: center; padding: 60px 20px; background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 100%); }
+        .hero h1 { font-size: 40px; margin-bottom: 10px; color: #fff; }
+        .hero p { color: #666; font-size: 16px; }
+
+        .game-grid { display: flex; justify-content: center; gap: 30px; padding: 40px 8%; flex-wrap: wrap; }
         
-        #chat_log { height: 400px; overflow-y: auto; background: rgba(0,0,0,0.5); border-radius: 20px; padding: 20px; margin-bottom: 25px; border: 1px solid #111; display: flex; flex-direction: column; gap: 12px; }
-        .msg { background: rgba(255,255,255,0.02); padding: 15px 20px; border-radius: 15px; border-left: 4px solid var(--neon); animation: pop 0.3s ease; }
-        .msg-u { color: var(--neon); font-weight: 900; font-family: 'Orbitron'; font-size: 14px; margin-bottom: 4px; }
-        .msg-t { color: #ddd; font-size: 17px; }
+        /* OYUN KARTI TASARIMI */
+        .game-card { background: #161616; border-radius: 12px; width: 350px; overflow: hidden; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
+        .game-card:hover { transform: translateY(-15px); border-color: #ff4b2b; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        
+        .badge { position: absolute; top: 15px; right: 15px; background: #ff4b2b; color: white; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        
+        .game-content { padding: 25px; }
+        .game-title { font-size: 24px; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+        .game-meta { font-size: 12px; color: #555; margin-bottom: 15px; display: flex; gap: 10px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .game-description { font-size: 14px; color: #999; margin-bottom: 20px; line-height: 1.5; }
 
-        .chat-input { display: flex; gap: 12px; }
-        #u_n { width: 25%; background: #000; border: 2px solid #222; border-radius: 12px; padding: 15px; color: #fff; font-family: inherit; }
-        #u_m { width: 75%; background: #000; border: 2px solid #222; border-radius: 12px; padding: 15px; color: #fff; font-family: inherit; }
-        .s-btn { background: var(--neon-alt); color: #fff; padding: 15px 35px; border-radius: 12px; border: none; font-weight: 900; font-family: 'Orbitron'; cursor: pointer; transition: 0.3s; }
-        .s-btn:hover { background: #fff; color: #000; transform: scale(1.05); }
+        /* SİSTEM TABLOSU */
+        .sys-req { background: #0f0f0f; padding: 12px; border-radius: 6px; margin-bottom: 20px; }
+        .sys-req div { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 5px; }
+        .sys-req span { color: #ff4b2b; }
 
-        @keyframes pop { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 10px; }
+        /* BUTONLAR */
+        .download-btn { display: block; text-align: center; background: #fff; color: #000; text-decoration: none; padding: 14px; border-radius: 6px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+        .download-btn:hover { background: #ff4b2b; color: #fff; }
 
-        footer { text-align: center; padding: 80px; color: #222; font-family: 'Orbitron'; font-size: 11px; letter-spacing: 8px; }
+        /* FOOTER */
+        footer { padding: 60px 8% 20px; background: #080808; border-top: 1px solid #111; text-align: center; }
+        .footer-info { display: flex; justify-content: space-between; flex-wrap: wrap; text-align: left; margin-bottom: 40px; }
+        .footer-col { width: 200px; }
+        .footer-col h4 { font-size: 14px; color: #fff; margin-bottom: 15px; }
+        .footer-col p, .footer-col li { font-size: 12px; color: #555; list-style: none; margin-bottom: 8px; }
+        .copyright { border-top: 1px solid #111; padding-top: 20px; font-size: 11px; color: #333; }
     </style>
 </head>
 <body>
-    <canvas id="m_bg"></canvas>
-    <nav><div class="logo">ULTRA VAULT PREMIUM</div></nav>
 
-    <div class="wrapper">
-        <section class="hero">
-            <h1 class="game-title">UNDERTALE</h1>
-            <p style="color: #666; font-size: 20px; letter-spacing: 2px;">V1.08 FULL ACCESS • BYPASS ACTIVE</p>
-            
-            <a href="https://drive.google.com/uc?export=download&id=1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ" class="dl-btn">DOWNLOAD</a>
+    <div class="top-bar">SON DAKİKA: TERRARIA LABOR OF LOVE GÜNCELLEMESİ EKLENDİ!</div>
 
-            <div class="vote-wrap">
-                <button class="v-btn" onclick="this.innerHTML='👍 413'">👍 412</button>
-                <button class="v-btn" onclick="this.innerHTML='👎 4'">👎 3</button>
-            </div>
-        </section>
+    <nav class="navbar">
+        <a href="#" class="logo">GAMER<span>HUB</span></a>
+        <ul class="nav-links">
+            <li>Kütüphane</li>
+            <li>Rehberler</li>
+            <li>Yamalar</li>
+            <li>Forum</li>
+            <li>Destek</li>
+        </ul>
+        <div class="user-actions">
+            <input type="text" class="search-box" placeholder="Oyun ara...">
+            <span style="font-size: 12px; cursor: pointer;">Giriş Yap</span>
+        </div>
+    </nav>
 
-        <section class="chat-system">
-            <div class="c-header">
-                <span>LOCAL SECURE CHAT</span>
-                <span style="color: var(--neon); font-size: 13px;">[ SYSTEM: OPERATIONAL ]</span>
-            </div>
-            
-            <div id="chat_log">
-                <div class="msg"><div class="msg-u">System_Root</div><div class="msg-t">Hoş geldin Agent. Bu kanal artık %100 güvenli ve hatasız. Mesajını gönder!</div></div>
-            </div>
-
-            <div class="chat-input">
-                <input type="text" id="u_n" placeholder="Agent Nick">
-                <input type="text" id="u_m" placeholder="Write message...">
-                <button class="s-btn" onclick="sendMsg()">SEND</button>
-            </div>
-        </section>
+    <div class="categories">
+        <span class="cat-tag">#Sandbox</span>
+        <span class="cat-tag">#Action RPG</span>
+        <span class="cat-tag">#Survival</span>
+        <span class="cat-tag">#Indie Classic</span>
+        <span class="cat-tag">#Multiplayer</span>
     </div>
 
-    <footer>GLOBAL VAULT SYSTEM 2026</footer>
+    <section class="hero">
+        <h1>Premium Oyun Arşivi</h1>
+        <p>En popüler bağımsız yapımlar, tamamen güvenli ve hızlı indirme seçenekleriyle.</p>
+    </section>
 
-    <script>
-        // MATRIX ENGINE
-        const c = document.getElementById('m_bg');
-        const x = c.getContext('2d');
-        c.width = window.innerWidth; c.height = window.innerHeight;
-        const s = "0123456789ABCDEF"; const f = 16;
-        const col = c.width / f; const drp = Array(Math.floor(col)).fill(1);
-        function draw() {
-            x.fillStyle = "rgba(0,0,0,0.05)"; x.fillRect(0,0,c.width,c.height);
-            x.fillStyle = "#00ffcc"; x.font = f + "px Orbitron";
-            for(let i=0; i<drp.length; i++) {
-                x.fillText(s[Math.floor(Math.random()*s.length)], i*f, drp[i]*f);
-                if(drp[i]*f > c.height && Math.random() > 0.975) drp[i] = 0;
-                drp[i]++;
-            }
-        }
-        setInterval(draw, 50);
-
-        // ASLA BOZULMAYAN CHAT MOTORU (LOCAL)
-        function sendMsg() {
-            const name = document.getElementById('u_n').value || "Agent_" + Math.floor(Math.random()*99);
-            const msg = document.getElementById('u_m').value;
-            if(!msg.trim()) return;
-
-            const log = document.getElementById('chat_log');
-            const div = document.createElement('div');
-            div.className = 'msg';
-            div.innerHTML = `<div class="msg-u">${name}</div><div class="msg-t">${msg}</div>`;
-            
-            log.appendChild(div);
-            log.scrollTop = log.scrollHeight;
-            document.getElementById('u_m').value = "";
-        }
-    </script>
-</body>
-</html>
+    <div class="game-grid">
+        
+        <div class="game-card">
+            <span class="badge">V1.4.4.9</span>
+            <div class="game-content">
+                <h2 class="game-title">🌳 Terraria</h2>
+                <div class="game-meta">
+                    <span>Sandbox</span> | <span>Survival</span> | <span>2D</span>
+                </div>
+                <p class="game-description">Dünyayı kaz, savaş, inşa et! Sınırı olmayan bir macera ve binlerce eşya seni bekliyor.</p>
+                <div class="sys-req">
+                    <div>RAM: <span>4 GB</span></div>
+                    <div>İşlemci: <span>Dual Core 3.0 Ghz</span></div>
+                    <div>Boyut: <span>273 MB</span></div>
