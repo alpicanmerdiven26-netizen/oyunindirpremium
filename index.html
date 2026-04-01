@@ -5,108 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GAMER HUB | Official Game Repository</title>
     <style>
-        /* GENEL AYARLAR */
+        /* GENEL TASARIM AYARLARI */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #0b0b0b; color: #e0e0e0; line-height: 1.6; }
+        body { font-family: 'Inter', 'Segoe UI', sans-serif; background-color: #0b0b0b; color: #e0e0e0; line-height: 1.6; overflow-x: hidden; }
 
-        /* ÜST HABER BANDI (PROFESYONEL DETAY) */
-        .top-bar { background: #ff4b2b; color: white; font-size: 11px; text-align: center; padding: 5px; font-weight: bold; letter-spacing: 1px; }
+        /* ÜST HABER BANDI */
+        .top-bar { background: #ff4b2b; color: white; font-size: 11px; text-align: center; padding: 6px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; }
 
         /* NAVIGASYON (MEGA MENÜ) */
-        .navbar { background: rgba(20, 20, 20, 0.95); display: flex; align-items: center; justify-content: space-between; padding: 20px 8%; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
-        .logo { font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 10px; }
+        .navbar { background: rgba(20, 20, 20, 0.98); display: flex; align-items: center; justify-content: space-between; padding: 20px 8%; border-bottom: 1px solid #333; position: sticky; top: 0; z-index: 1000; backdrop-filter: blur(10px); }
+        .logo { font-size: 26px; font-weight: 900; color: #fff; text-decoration: none; letter-spacing: -1px; }
         .logo span { color: #ff4b2b; }
         .nav-links { list-style: none; display: flex; gap: 30px; }
         .nav-links li { font-size: 13px; font-weight: 600; cursor: pointer; color: #999; transition: 0.3s; text-transform: uppercase; }
         .nav-links li:hover { color: #ff4b2b; }
         
         .user-actions { display: flex; gap: 15px; align-items: center; }
-        .search-box { background: #1a1a1a; border: 1px solid #333; padding: 8px 15px; border-radius: 5px; color: #fff; font-size: 12px; }
+        .search-box { background: #1a1a1a; border: 1px solid #333; padding: 8px 15px; border-radius: 5px; color: #fff; font-size: 12px; outline: none; }
+        .search-box:focus { border-color: #ff4b2b; }
 
         /* KATEGORİLER */
         .categories { display: flex; justify-content: center; gap: 15px; padding: 20px; background: #111; border-bottom: 1px solid #222; }
-        .cat-tag { padding: 5px 12px; border-radius: 20px; border: 1px solid #444; font-size: 11px; color: #888; cursor: pointer; transition: 0.3s; }
-        .cat-tag:hover { border-color: #ff4b2b; color: #fff; }
+        .cat-tag { padding: 5px 15px; border-radius: 20px; border: 1px solid #444; font-size: 11px; color: #888; cursor: pointer; transition: 0.3s; font-weight: 600; }
+        .cat-tag:hover { border-color: #ff4b2b; color: #fff; background: rgba(255, 75, 43, 0.1); }
 
         /* ANA İÇERİK */
-        .hero { text-align: center; padding: 60px 20px; background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 100%); }
-        .hero h1 { font-size: 40px; margin-bottom: 10px; color: #fff; }
-        .hero p { color: #666; font-size: 16px; }
+        .hero { text-align: center; padding: 80px 20px; background: radial-gradient(circle at center, #1a1a1a 0%, #0b0b0b 100%); border-bottom: 1px solid #111; }
+        .hero h1 { font-size: 45px; margin-bottom: 15px; color: #fff; font-weight: 900; }
+        .hero p { color: #666; font-size: 18px; max-width: 600px; margin: 0 auto; }
 
-        .game-grid { display: flex; justify-content: center; gap: 30px; padding: 40px 8%; flex-wrap: wrap; }
+        .game-grid { display: flex; justify-content: center; gap: 40px; padding: 60px 8%; flex-wrap: wrap; }
         
         /* OYUN KARTI TASARIMI */
-        .game-card { background: #161616; border-radius: 12px; width: 350px; overflow: hidden; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
-        .game-card:hover { transform: translateY(-15px); border-color: #ff4b2b; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .game-card { background: #161616; border-radius: 16px; width: 380px; overflow: hidden; border: 1px solid #222; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; }
+        .game-card:hover { transform: translateY(-15px); border-color: #ff4b2b; box-shadow: 0 20px 40px rgba(0,0,0,0.6); }
         
-        .badge { position: absolute; top: 15px; right: 15px; background: #ff4b2b; color: white; font-size: 10px; padding: 4px 8px; border-radius: 4px; font-weight: bold; }
+        .badge { position: absolute; top: 20px; right: 20px; background: #ff4b2b; color: white; font-size: 10px; padding: 5px 10px; border-radius: 6px; font-weight: bold; box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3); }
         
-        .game-content { padding: 25px; }
-        .game-title { font-size: 24px; color: #fff; margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
-        .game-meta { font-size: 12px; color: #555; margin-bottom: 15px; display: flex; gap: 10px; border-bottom: 1px solid #222; padding-bottom: 10px; }
-        .game-description { font-size: 14px; color: #999; margin-bottom: 20px; line-height: 1.5; }
+        .game-content { padding: 30px; }
+        .game-title { font-size: 28px; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+        .game-meta { font-size: 12px; color: #555; margin-bottom: 20px; display: flex; gap: 12px; border-bottom: 1px solid #222; padding-bottom: 15px; font-weight: bold; text-transform: uppercase; }
+        .game-description { font-size: 15px; color: #aaa; margin-bottom: 25px; line-height: 1.6; height: 75px; overflow: hidden; }
 
         /* SİSTEM TABLOSU */
-        .sys-req { background: #0f0f0f; padding: 12px; border-radius: 6px; margin-bottom: 20px; }
-        .sys-req div { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 5px; }
-        .sys-req span { color: #ff4b2b; }
+        .sys-req { background: #0f0f0f; padding: 15px; border-radius: 8px; margin-bottom: 25px; border: 1px solid #222; }
+        .sys-req div { display: flex; justify-content: space-between; font-size: 11px; margin-bottom: 6px; color: #777; }
+        .sys-req span { color: #ff4b2b; font-weight: bold; }
 
         /* BUTONLAR */
-        .download-btn { display: block; text-align: center; background: #fff; color: #000; text-decoration: none; padding: 14px; border-radius: 6px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .download-btn:hover { background: #ff4b2b; color: #fff; }
+        .download-btn { display: block; text-align: center; background: #fff; color: #000; text-decoration: none; padding: 16px; border-radius: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s; font-size: 13px; }
+        .download-btn:hover { background: #ff4b2b; color: #fff; transform: scale(1.02); }
 
         /* FOOTER */
-        footer { padding: 60px 8% 20px; background: #080808; border-top: 1px solid #111; text-align: center; }
-        .footer-info { display: flex; justify-content: space-between; flex-wrap: wrap; text-align: left; margin-bottom: 40px; }
-        .footer-col { width: 200px; }
-        .footer-col h4 { font-size: 14px; color: #fff; margin-bottom: 15px; }
-        .footer-col p, .footer-col li { font-size: 12px; color: #555; list-style: none; margin-bottom: 8px; }
-        .copyright { border-top: 1px solid #111; padding-top: 20px; font-size: 11px; color: #333; }
+        footer { padding: 80px 8% 30px; background: #080808; border-top: 1px solid #111; text-align: center; }
+        .footer-info { display: flex; justify-content: space-between; flex-wrap: wrap; text-align: left; margin-bottom: 50px; }
+        .footer-col { width: 250px; margin-bottom: 30px; }
+        .footer-col h4 { font-size: 15px; color: #fff; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-col p, .footer-col li { font-size: 13px; color: #555; list-style: none; margin-bottom: 10px; }
+        .copyright { border-top: 1px solid #111; padding-top: 30px; font-size: 12px; color: #333; font-weight: bold; }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">SON DAKİKA: TERRARIA LABOR OF LOVE GÜNCELLEMESİ EKLENDİ!</div>
+    <div class="top-bar">Duyuru: Sunucu Kapasitesi %100 Artırıldı - Kesintisiz İndirme Aktif!</div>
 
     <nav class="navbar">
         <a href="#" class="logo">GAMER<span>HUB</span></a>
         <ul class="nav-links">
             <li>Kütüphane</li>
-            <li>Rehberler</li>
-            <li>Yamalar</li>
-            <li>Forum</li>
+            <li>Yama Notları</li>
+            <li>Haberler</li>
+            <li>Topluluk</li>
             <li>Destek</li>
         </ul>
         <div class="user-actions">
-            <input type="text" class="search-box" placeholder="Oyun ara...">
-            <span style="font-size: 12px; cursor: pointer;">Giriş Yap</span>
+            <input type="text" class="search-box" placeholder="Hızlı oyun ara...">
+            <span style="font-size: 12px; cursor: pointer; color: #ff4b2b; font-weight: bold;">[GİRİŞ YAP]</span>
         </div>
     </nav>
 
     <div class="categories">
-        <span class="cat-tag">#Sandbox</span>
-        <span class="cat-tag">#Action RPG</span>
-        <span class="cat-tag">#Survival</span>
-        <span class="cat-tag">#Indie Classic</span>
-        <span class="cat-tag">#Multiplayer</span>
+        <span class="cat-tag">#SANDBOX</span>
+        <span class="cat-tag">#RPG</span>
+        <span class="cat-tag">#SURVIVAL</span>
+        <span class="cat-tag">#INDIE</span>
+        <span class="cat-tag">#2D-PLATFORM</span>
+        <span class="cat-tag">#STRATEGY</span>
     </div>
 
     <section class="hero">
-        <h1>Premium Oyun Arşivi</h1>
-        <p>En popüler bağımsız yapımlar, tamamen güvenli ve hızlı indirme seçenekleriyle.</p>
+        <h1>Bağımsız Oyun Merkezi</h1>
+        <p>En sevilen kült oyunlar, doğrudan Google Drive hızıyla ve tamamen güncel sürümleriyle elinin altında.</p>
     </section>
 
     <div class="game-grid">
         
         <div class="game-card">
-            <span class="badge">V1.4.4.9</span>
+            <span class="badge">V1.4.4.9 GÜNCEL</span>
             <div class="game-content">
                 <h2 class="game-title">🌳 Terraria</h2>
                 <div class="game-meta">
-                    <span>Sandbox</span> | <span>Survival</span> | <span>2D</span>
+                    <span>Sandbox</span> | <span>Macera</span> | <span>İnşa</span>
                 </div>
-                <p class="game-description">Dünyayı kaz, savaş, inşa et! Sınırı olmayan bir macera ve binlerce eşya seni bekliyor.</p>
+                <p class="game-description">Kendi dünyanı kur, devasa bosslarla savaş ve yerin derinliklerindeki hazineleri keşfet. Sınırsız içerik!</p>
                 <div class="sys-req">
-                    <div>RAM: <span>4 GB</span></div>
-                    <div>İşlemci: <span>Dual Core 3.0 Ghz</span></div>
-                    <div>Boyut: <span>273 MB</span></div>
+                    <div>RAM GEREKSİNİMİ: <span>4 GB</span></div>
+                    <div>İŞLEMCİ: <span>Dual Core 3.0 Ghz</span></div>
+                    <div>DOSYA BOYUTU: <span>273 MB</span></div>
+                </div>
+                <a href="https://drive.google.com/file/d/19SrGDwzLFIf4nfvIzR2jyhWA0Cp3beT5/view?usp=sharing" target="_blank" class="download-btn">Hemen İndir (Drive)</a>
+            </div>
+        </div>
+
+        <div class="game-card">
+            <span class="badge">V1.08 FULL</span>
+            <div class="game-content">
+                <h2 class="game-title">❤️ Undertale</h2>
+                <div class="game-meta">
+                    <span>RPG</span> | <span>Hikaye</span> | <span>Kült</span>
+                </div>
+                <p class="game-description">Her seçimin bir sonucu olduğu, canavarlarla arkadaşlık kurabileceğin unutulmaz bir yeraltı hikayesi.</p>
+                <div class="sys-req">
+                    <div>RAM GEREKSİNİMİ: <span>2 GB</span></div>
+                    <div>İŞLEMCİ: <span>2.0 Ghz+</span></div>
+                    <div>DOSYA BOYUTU: <span>142 MB</span></div>
+                </div>
+                <a href="https://drive.google.com/file/d/1kLEj7z3A3NLrglIzz8QdSD91OxafDLkQ/view?usp=sharing" target="_blank" class="download-btn">Hemen İndir (Drive)</a>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-info">
+            <div class="footer-col">
+                <h4>SİTE VİZYONU</h4>
+                <p>Oyuncular için en hızlı ve en güvenli indirme platformu olma yolunda ilerliyoruz.</p>
+            </div>
+            <div class="footer-col">
+                <h4>NAVİGASYON</h4>
+                <li>Gizlilik Politikası</li>
+                <li>DMCA / Telif Hakları</li>
+                <li>Hata Bildirimi</li>
+            </div>
+            <div class="footer-col">
+                <h4>SİSTEM DURUMU</h4>
+                <li style="color: #4caf50;">● İndirme Sunucuları: AKTİF</li>
+                <li style="color: #ff9800;">● Sohbet Bölümü: BAKIMDA</li>
+                <li style="color: #2196f3;">● Güncelleme: 01.04.2026</li>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2026 GAMERHUB ENTERTAINMENT. TÜM HAKLARI SAKLIDIR.
+        </div>
+    </footer>
+
+</body>
+</html>
